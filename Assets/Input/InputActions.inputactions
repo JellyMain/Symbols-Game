@@ -1,0 +1,74 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Typewriter",
+            "id": "d8165cd8-9362-41bd-b50f-97972bfd0895",
+            "actions": [
+                {
+                    "name": "BackspacePressed",
+                    "type": "Button",
+                    "id": "04c505db-57c5-461e-89eb-cde34770bcef",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BackspaceHold",
+                    "type": "Button",
+                    "id": "eb7502d8-0ad7-48b1-9bc8-0d96c64196a2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EnterPressed",
+                    "type": "Button",
+                    "id": "93fba903-7a4c-4254-a4c3-d6a237e96e2e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "622a0e5f-012b-4dee-be8a-128dde740d44",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BackspacePressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f4e103d8-d63c-47fa-8dbe-a6dfa7394e70",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BackspaceHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1e2820d-359f-42ff-8813-60399dcbc0b4",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EnterPressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
