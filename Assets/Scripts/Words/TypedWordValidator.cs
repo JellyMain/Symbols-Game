@@ -16,9 +16,12 @@ namespace Words
         public string CurrentWord { get; private set; } = "";
         public List<bool> CurrentWordCharStates { get; private set; } = new List<bool>();
         private bool backspaceHold;
+        private const string ALLOWED_SYMBOLS = "!@#$%^&*()-_=+[]{}|;:,'<.>/?";
+        private bool isFirstCharTyped;
         public event Action OnWordUpdated;
         public event Action<List<bool>> OnWordValidated;
-        private const string ALLOWED_SYMBOLS = "!@#$%^&*()-_=+[]{}|;:,'<.>/?";
+        public event Action OnFirstCharTyped;
+        public event Action OnCharTyped;
 
 
         public TypedWordValidator(InputService inputService, TargetWordService targetWordService)
@@ -62,7 +65,7 @@ namespace Words
             backspaceHold = false;
         }
 
-        
+
         private async UniTaskVoid RemoveCharsContinuously()
         {
             backspaceHold = true;
@@ -91,21 +94,26 @@ namespace Words
         }
 
 
-
         private void TryTypeChar(char charToType)
         {
             if (CurrentWord.Length < targetWordService.TargetWord.Length)
             {
                 if (IsAllowedChar(charToType))
                 {
+                    if (!isFirstCharTyped)
+                    {
+                        isFirstCharTyped = true;
+                        OnFirstCharTyped?.Invoke();
+                    }
                     currentWordBuilder.Append(charToType);
+                    OnCharTyped?.Invoke();
                     CurrentWord = currentWordBuilder.ToString();
                     CompareChars();
                 }
             }
         }
 
-        
+
         private void CompareChars()
         {
             string targetWord = targetWordService.TargetWord;

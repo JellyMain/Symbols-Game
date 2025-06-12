@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8359060930140436452}
   - component: {fileID: 781644735249517122}
   m_Layer: 5
-  m_Name: SpawnedCharScore
+  m_Name: CharScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

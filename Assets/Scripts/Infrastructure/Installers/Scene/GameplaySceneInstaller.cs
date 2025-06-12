@@ -13,7 +13,8 @@ namespace Infrastructure.Installers.Scene
 {
     public class GameplaySceneInstaller : MonoInstaller
     {
-        [SerializeField] private MultiplierService multiplierService;
+        [SerializeField] private MultiplierService multiplierServicePrefab;
+        [SerializeField] private WpmService wpmServicePrefab;
         
         
         public override void InstallBindings()
@@ -26,12 +27,19 @@ namespace Infrastructure.Installers.Scene
             BindTargetWordService();
             BindWordSubmitterService();
             CreateAndBindMultiplierService();
+            CreateAndBindWpmService();
+        }
+
+
+        private void CreateAndBindWpmService()
+        {
+            Container.Bind<WpmService>().FromComponentInNewPrefab(wpmServicePrefab).AsSingle().NonLazy();
         }
 
 
         private void CreateAndBindMultiplierService()
         {
-            Container.Bind<MultiplierService>().FromComponentInNewPrefab(multiplierService).AsSingle().NonLazy();
+            Container.Bind<MultiplierService>().FromComponentInNewPrefab(multiplierServicePrefab).AsSingle().NonLazy();
         }
 
 

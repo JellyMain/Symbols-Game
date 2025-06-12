@@ -17,6 +17,7 @@ namespace Const
         public static class StaticDataAddresses
         {
             public const string SCORE_MULTIPLIERS_CONFIG = "ScoreMultipliersConfig";
+            public const string INSTRUCTIONS_CONFIG = "InstructionsConfig";
         }
 
 

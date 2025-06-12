@@ -5,6 +5,7 @@ using Febucci.UI;
 using TMPro;
 using Typewriter;
 using UnityEngine;
+using Utils;
 using Words;
 using Zenject;
 
@@ -58,19 +59,19 @@ namespace UI
         {
             underscoresText.text = new string('_', word.Length);
         }
-        
-        
+
+
         private void UpdateTypedWordUI()
         {
             string currentWord = typedWordValidator.CurrentWord;
             List<bool> charStates = typedWordValidator.CurrentWordCharStates;
 
             string formatedText = BuildFormattedWord(currentWord, charStates);
-            
+
             currentWordText.text = formatedText;
             currentWordText.ForceMeshUpdate();
         }
-        
+
 
         private void HandleWordValidation(List<bool> charStates)
         {
@@ -86,7 +87,7 @@ namespace UI
             AnimateLastTypedCharacter(currentWord.Length);
         }
 
-        
+
         private string BuildFormattedWord(string word, List<bool> charStates)
         {
             StringBuilder sb = new StringBuilder();
@@ -95,7 +96,7 @@ namespace UI
             {
                 if (i < charStates.Count && !charStates[i])
                 {
-                    sb.Append(AddColorTag(word[i], "red"));
+                    sb.Append(StringUtility.AddColorTag(word[i], "red"));
                 }
                 else
                 {
@@ -106,18 +107,12 @@ namespace UI
             return sb.ToString();
         }
 
-        
+
         private void AnimateLastTypedCharacter(int length)
         {
             if (length == 0) return;
 
             textAnimator.DOFadeChar(length - 1, 1, 0.2f).From(0);
-        }
-
-        
-        private string AddColorTag(char c, string colorName)
-        {
-            return $"<color={colorName}>{c}</color>";
         }
     }
 }
