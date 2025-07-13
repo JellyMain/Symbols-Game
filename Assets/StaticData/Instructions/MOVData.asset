@@ -15,3 +15,4 @@ MonoBehaviour:
   instructionName: MOV
   rarity: 1
   cost: 10
+  description: Some description here

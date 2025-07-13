@@ -1,4 +1,5 @@
-﻿using Const;
+﻿using System;
+using Const;
 using Infrastructure.GameStates.Interfaces;
 using Infrastructure.Services;
 using Progress;
@@ -42,8 +43,7 @@ namespace Infrastructure.GameStates
             persistentPlayerProgress.PlayerProgress = LoadOrCreateNewProgress();
         }
 
-
-
+        
         private PlayerProgress LoadOrCreateNewProgress()
         {
             PlayerProgress playerProgress = saveLoadService.LoadProgress() ?? new PlayerProgress();

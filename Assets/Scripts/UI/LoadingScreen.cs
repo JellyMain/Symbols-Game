@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 
@@ -29,7 +28,6 @@ namespace UI
         {
             StartCoroutine(FadeOut());
         }
-
         
     
         private IEnumerator FadeOut()

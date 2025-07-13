@@ -8,6 +8,6 @@ namespace Score
     {
         public float multiplier;
         public float valueToFill;
-        public string text;
+        public string dialogueText;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using Words;
-using WordsProv;
 
 
 namespace Typewriter
@@ -18,13 +17,7 @@ namespace Typewriter
         {
             this.wordsProvider = wordsProvider;
         }
-
-
-        public void Init()
-        {
-            SetNewTargetWord();
-        }
-
+        
 
         public void SetNewTargetWord()
         {

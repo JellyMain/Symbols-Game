@@ -4,4 +4,9 @@ namespace Infrastructure.GameStates.Interfaces
     {
         public void Enter();
     }
+
+    public interface IExitableState: IGameState
+    {
+        public void Exit();
+    }
 }

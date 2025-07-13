@@ -17,6 +17,8 @@ namespace StaticData.Services
         public WordResponseArray WordResponseArray { get; private set; }
         public ScoreMultipliersConfig ScoreMultipliersConfig { get; private set; }
         public InstructionsConfig InstructionsConfig { get; private set; }
+        public LevelsConfig LevelsConfig { get; private set; }
+        public AnimationsConfig AnimationsConfig { get; private set; }
 
 
         public StaticDataService(AssetProvider assetProvider)
@@ -30,15 +32,33 @@ namespace StaticData.Services
             UniTask fetchRandomWordsTask = FetchRandomWords();
             UniTask loadScoreMultiplierConfigTask = LoadScoreMultiplierConfig();
             UniTask loadInstructionsConfigTask = LoadInstructionsConfig();
+            UniTask loadLevelsConfigTask = LoadLevelsConfig();
+            UniTask loadAnimationsConfigTask = LoadAnimationsConfig();
 
             UniTask[] tasks =
             {
                 fetchRandomWordsTask,
                 loadScoreMultiplierConfigTask,
-                loadInstructionsConfigTask
+                loadInstructionsConfigTask,
+                loadLevelsConfigTask,
+                loadAnimationsConfigTask
             };
 
             await UniTask.WhenAll(tasks);
+        }
+
+
+        private async UniTask LoadAnimationsConfig()
+        {
+            AnimationsConfig =
+                await assetProvider.LoadAsset<AnimationsConfig>(RuntimeConstants.StaticDataAddresses.ANIMATIONS_CONFIG);
+        }
+
+
+        private async UniTask LoadLevelsConfig()
+        {
+            LevelsConfig =
+                await assetProvider.LoadAsset<LevelsConfig>(RuntimeConstants.StaticDataAddresses.LEVELS_CONFIG);
         }
 
 

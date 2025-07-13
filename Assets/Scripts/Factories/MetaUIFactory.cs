@@ -1,23 +1,18 @@
 ﻿using Assets;
-using Const;
-using Cysharp.Threading.Tasks;
-using Progress;
-using UnityEngine;
 using Zenject;
 
 
 namespace Factories
 {
-    public class MetaUIFactory
+    public class MetaUIFactory : BaseFactory
     {
-        private readonly AssetProvider assetProvider;
-        private readonly DiContainer diContainer;
+        public MetaUIFactory(AssetProvider assetProvider, DiContainer diContainer) :
+            base(diContainer, assetProvider) { }
 
 
-        public MetaUIFactory(AssetProvider assetProvider, DiContainer diContainer)
+        protected override void WarmUpPrefabs()
         {
-            this.assetProvider = assetProvider;
-            this.diContainer = diContainer;
+            
         }
     }
 }

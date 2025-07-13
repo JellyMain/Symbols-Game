@@ -4,6 +4,7 @@ using System.Text;
 using Cysharp.Threading.Tasks;
 using Input;
 using Typewriter;
+using UnityEngine;
 
 
 namespace Words
@@ -16,7 +17,7 @@ namespace Words
         public string CurrentWord { get; private set; } = "";
         public List<bool> CurrentWordCharStates { get; private set; } = new List<bool>();
         private bool backspaceHold;
-        private const string ALLOWED_SYMBOLS = "!@#$%^&*()-_=+[]{}|;:,'<.>/?";
+
         private bool isFirstCharTyped;
         public event Action OnWordUpdated;
         public event Action<List<bool>> OnWordValidated;
@@ -33,12 +34,21 @@ namespace Words
 
         public void Init()
         {
-            inputService.EnableReadingTextInput();
             inputService.OnTextInput += TryTypeChar;
             inputService.OnBackspacePressed += RemoveChar;
             inputService.OnBackSpaceHold += StartBackspaceHold;
             inputService.OnBackspaceReleased += CancelBackspaceHold;
             OnWordUpdated?.Invoke();
+        }
+
+
+
+        public void UnsubscribeFromEvents()
+        {
+            inputService.OnTextInput -= TryTypeChar;
+            inputService.OnBackspacePressed -= RemoveChar;
+            inputService.OnBackSpaceHold -= StartBackspaceHold;
+            inputService.OnBackspaceReleased -= CancelBackspaceHold;
         }
 
 
@@ -78,38 +88,20 @@ namespace Words
         }
 
 
-        private bool IsAllowedChar(char character)
-        {
-            if (char.IsLetterOrDigit(character))
-            {
-                return true;
-            }
-
-            if (ALLOWED_SYMBOLS.Contains(character))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-
         private void TryTypeChar(char charToType)
         {
             if (CurrentWord.Length < targetWordService.TargetWord.Length)
             {
-                if (IsAllowedChar(charToType))
+                if (!isFirstCharTyped)
                 {
-                    if (!isFirstCharTyped)
-                    {
-                        isFirstCharTyped = true;
-                        OnFirstCharTyped?.Invoke();
-                    }
-                    currentWordBuilder.Append(charToType);
-                    OnCharTyped?.Invoke();
-                    CurrentWord = currentWordBuilder.ToString();
-                    CompareChars();
+                    isFirstCharTyped = true;
+                    OnFirstCharTyped?.Invoke();
                 }
+
+                currentWordBuilder.Append(charToType);
+                OnCharTyped?.Invoke();
+                CurrentWord = currentWordBuilder.ToString();
+                CompareChars();
             }
         }
 
@@ -146,6 +138,12 @@ namespace Words
         public void ClearCharStates()
         {
             CurrentWordCharStates.Clear();
+        }
+
+
+        public void ResetIsFirstCharTyped()
+        {
+            isFirstCharTyped = false;
         }
 
 

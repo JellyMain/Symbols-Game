@@ -17,13 +17,98 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: b45143d2b17cd7448ab8a65e4d1db40d
   m_SerializeEntries:
+  - m_GUID: 181898dc3e5ca4240b0e1f6af9af853a
+    m_Address: AnimationsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24a99fb863d38144c826814e3813aa29
+    m_Address: WordsCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24d15dd449b4414489191970050ce0c2
+    m_Address: ShopInstructionUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ce8b151d4ee52e49927b109553728c7
+    m_Address: TransitionCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c3b5f1a3c6fc49428cc4405a29d5144
+    m_Address: LevelsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 625fec0f3fef66345a4fa075cd0adcf0
+    m_Address: ShopWindowUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 685b708d1a7e78c47b4f9098a6499ad5
+    m_Address: ScoreCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74318a728ce1cd94e81a4a2069e851de
+    m_Address: DonutRenderer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7a9fdb5e418e9844aa0fd41ca262e7bd
     m_Address: InstructionsConfig
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae917795a290ac148a2c47b6e9976f72
+    m_Address: ShopBackgroundCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b494d5cd01e10844d8bc438a41935d93
+    m_Address: GameplayBackgroundCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b65d2f5625aa50d4e89d9762fd08abec
     m_Address: ScoreMultipliersConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e076d8069aa71ee4ab1225c26406bed8
+    m_Address: OverviewWindowUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea60f35dffdf27c4bb3bf39d2414fe1c
+    m_Address: OverviewInstructionUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eeae101358ada3649ba97c892d0f9a1b
+    m_Address: DeletingProcessCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eed6752e662b6d440a5826761733d29d
+    m_Address: WpmCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0d8e82eb126528479ddebd42b434dfd
+    m_Address: MainCamera
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f44cc6caa29d8f142b3265a22be1d409
+    m_Address: CommandOutputUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe8d526f91a17c6478a26cd1082471d7
+    m_Address: LevelCompletedWindowUI
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

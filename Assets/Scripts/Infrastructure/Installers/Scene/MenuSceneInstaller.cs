@@ -22,7 +22,7 @@ namespace Infrastructure.Installers.Scene
         
         private void BindMetaUIFactory()
         {
-            Container.Bind<MetaUIFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MetaUIFactory>().AsSingle();
         }
     }
 }

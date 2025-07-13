@@ -3,12 +3,12 @@ using StaticData.Services;
 using UnityEngine;
 
 
-namespace WordsProv
+namespace Words
 {
     public class WordsProvider
     {
         private readonly WordResponseArray wordResponseArray;
-
+        
         
         public WordsProvider(StaticDataService staticDataService)
         {

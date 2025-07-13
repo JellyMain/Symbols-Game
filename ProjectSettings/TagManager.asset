@@ -50,3 +50,9 @@ TagManager:
   - name: Score
     uniqueID: 1488025447
     locked: 0
+  - name: Transition
+    uniqueID: 580252117
+    locked: 0
+  - name: Pause
+    uniqueID: 4127432079
+    locked: 0

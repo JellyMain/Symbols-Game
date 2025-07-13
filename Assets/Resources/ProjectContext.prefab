@@ -88,4 +88,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2913d25046a426b93d193226e2172ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cheatsServicePrefab: {fileID: 4867577663695062728, guid: 97ca022334b2b1b43ba231e3acf4fc1e, type: 3}
   loadingScreenPrefab: {fileID: 1839616288286198605, guid: 413d36fea23875e41b4247cb654fbc2f, type: 3}

@@ -1,4 +1,5 @@
 ﻿using Assets;
+using Cheats;
 using DG.Tweening;
 using Infrastructure.Services;
 using Input;
@@ -15,6 +16,7 @@ namespace Infrastructure.Installers.Global
 {
     public class InfrastructureInstaller : MonoInstaller
     {
+        [SerializeField] private CheatsService cheatsServicePrefab;
         [SerializeField] private LoadingScreen loadingScreenPrefab;
 
 
@@ -30,6 +32,13 @@ namespace Infrastructure.Installers.Global
             BindPersistentPlayerProgress();
             BindLocalContainerPasser();
             BindInputService();
+            CreateAndBindCheatsService();
+        }
+
+
+        private void CreateAndBindCheatsService()
+        {
+            Container.Bind<CheatsService>().FromComponentInNewPrefab(cheatsServicePrefab).AsSingle().NonLazy();
         }
 
 

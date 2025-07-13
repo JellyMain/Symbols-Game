@@ -1,10 +1,13 @@
-﻿using Factories;
+﻿using Cysharp.Threading.Tasks;
+using Factories;
 using Infrastructure.GameStates.Interfaces;
 using Infrastructure.Services;
+using Levels;
 using Progress;
 using Scenes;
 using Score;
 using Typewriter;
+using UI;
 using UnityEngine;
 using Words;
 
@@ -13,52 +16,32 @@ namespace Infrastructure.GameStates
 {
     public class LoadLevelState : IGameState
     {
-        private readonly SceneLoader sceneLoader;
         private readonly GameplayUIFactory gameplayUIFactory;
-        private readonly SaveLoadService saveLoadService;
         private readonly GameStateMachine gameStateMachine;
-        private readonly TypedWordValidator typedWordValidator;
-        private readonly TargetWordService targetWordService;
-        private readonly WordSubmitter wordSubmitter;
-        private readonly ScoreService scoreService;
 
 
-        public LoadLevelState(SceneLoader sceneLoader, GameplayUIFactory gameplayUIFactory,
-            SaveLoadService saveLoadService, GameStateMachine gameStateMachine, TypedWordValidator typedWordValidator,
-            TargetWordService targetWordService, WordSubmitter wordSubmitter,
-            ScoreService scoreService)
+        public LoadLevelState(GameplayUIFactory gameplayUIFactory, GameStateMachine gameStateMachine)
         {
-            this.sceneLoader = sceneLoader;
             this.gameplayUIFactory = gameplayUIFactory;
-            this.saveLoadService = saveLoadService;
             this.gameStateMachine = gameStateMachine;
-            this.typedWordValidator = typedWordValidator;
-            this.targetWordService = targetWordService;
-            this.wordSubmitter = wordSubmitter;
-            this.scoreService = scoreService;
         }
 
 
-        public void Enter()
+        public async void Enter()
         {
-            InitGameplayServices();
-
-            CreateLevel();
-            saveLoadService.UpdateProgress();
-
-            gameStateMachine.Enter<GameLoopState>();
+            await CreateLevel();
+            gameStateMachine.Enter<GameplayState>();
         }
 
 
-        private void InitGameplayServices()
+        private async UniTask CreateLevel()
         {
-            typedWordValidator.Init();
-            targetWordService.Init();
-            wordSubmitter.Init();
-            scoreService.Init();
+            gameplayUIFactory.CreateUIParent();
+            await gameplayUIFactory.CreateScoreCanvas();
+            await gameplayUIFactory.CreateWordsCanvas();
+            await gameplayUIFactory.CreateWpmCanvas();
+            await gameplayUIFactory.CreateDonutRenderer();
+            await gameplayUIFactory.CreateDeletingProcessCanvas();
         }
-
-
-        private void CreateLevel() { }
     }
 }

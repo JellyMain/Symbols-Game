@@ -13,21 +13,18 @@ namespace Score
     {
         [SerializeField] private float sliderSpeed = 1;
         private ScoreMultipliersConfig scoreMultipliersConfig;
-        private WordSubmitter wordSubmitter;
         private int stage;
-        private float multiplier = 1;
+        public float CurrentMultiplier { get; private set; } = 1;
         private float fillValue;
         private float maxFillValue;
-        private string multiplierText;
         public float NormalizedFillValue => fillValue / maxFillValue;
         public event Action<MultiplierData> OnSliderFilled;
 
 
 
         [Inject]
-        private void Construct(StaticDataService staticDataService, WordSubmitter wordSubmitter)
+        private void Construct(StaticDataService staticDataService)
         {
-            this.wordSubmitter = wordSubmitter;
             scoreMultipliersConfig = staticDataService.ScoreMultipliersConfig;
         }
 
@@ -35,13 +32,6 @@ namespace Score
         private void Start()
         {
             SetStageData();
-            wordSubmitter.OnWordSubmitted += AddValue;
-        }
-
-
-        private void OnDisable()
-        {
-            wordSubmitter.OnWordSubmitted -= AddValue;
         }
         
 
@@ -64,7 +54,7 @@ namespace Score
         }
 
 
-        private void AddValue(WordSubmissionData wordSubmissionData)
+        public void AddValue(WordSubmissionData wordSubmissionData)
         {
             if (wordSubmissionData.isWordCorrect)
             {
@@ -78,12 +68,18 @@ namespace Score
         {
             MultiplierData multiplierData = scoreMultipliersConfig.multipliersConfig[stage];
 
-            multiplier = multiplierData.multiplier;
+            CurrentMultiplier = multiplierData.multiplier;
             maxFillValue = multiplierData.valueToFill;
-            multiplierText = multiplierData.text;
 
             fillValue = 0;
             OnSliderFilled?.Invoke(multiplierData);
+        }
+
+
+        public void ResetMultiplier()
+        {
+            CurrentMultiplier = 1;
+            stage = 0;
         }
     }
 }

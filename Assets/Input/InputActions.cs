@@ -53,6 +53,33 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightArrowPressed"",
+                    ""type"": ""Button"",
+                    ""id"": ""aeb1beca-12bd-4da9-ba04-5d344108b955"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftArrowPressed"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ae04feb-8fe7-4b94-942a-d96ff6f2f3ce"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EscapePressed"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3786940-df62-4b2b-b6f2-5733895e25a4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -88,6 +115,39 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""EnterPressed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65b1b9b2-4cf0-4ac0-bf7e-3d9c4c8b4ad2"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightArrowPressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c435dcb-c446-48ed-adb2-c20d701bf36b"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftArrowPressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c174124-ff4b-47d5-b996-57a3edbd7e25"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EscapePressed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -99,6 +159,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Typewriter_BackspacePressed = m_Typewriter.FindAction("BackspacePressed", throwIfNotFound: true);
         m_Typewriter_BackspaceHold = m_Typewriter.FindAction("BackspaceHold", throwIfNotFound: true);
         m_Typewriter_EnterPressed = m_Typewriter.FindAction("EnterPressed", throwIfNotFound: true);
+        m_Typewriter_RightArrowPressed = m_Typewriter.FindAction("RightArrowPressed", throwIfNotFound: true);
+        m_Typewriter_LeftArrowPressed = m_Typewriter.FindAction("LeftArrowPressed", throwIfNotFound: true);
+        m_Typewriter_EscapePressed = m_Typewriter.FindAction("EscapePressed", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -168,6 +231,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Typewriter_BackspacePressed;
     private readonly InputAction m_Typewriter_BackspaceHold;
     private readonly InputAction m_Typewriter_EnterPressed;
+    private readonly InputAction m_Typewriter_RightArrowPressed;
+    private readonly InputAction m_Typewriter_LeftArrowPressed;
+    private readonly InputAction m_Typewriter_EscapePressed;
     public struct TypewriterActions
     {
         private @InputActions m_Wrapper;
@@ -175,6 +241,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @BackspacePressed => m_Wrapper.m_Typewriter_BackspacePressed;
         public InputAction @BackspaceHold => m_Wrapper.m_Typewriter_BackspaceHold;
         public InputAction @EnterPressed => m_Wrapper.m_Typewriter_EnterPressed;
+        public InputAction @RightArrowPressed => m_Wrapper.m_Typewriter_RightArrowPressed;
+        public InputAction @LeftArrowPressed => m_Wrapper.m_Typewriter_LeftArrowPressed;
+        public InputAction @EscapePressed => m_Wrapper.m_Typewriter_EscapePressed;
         public InputActionMap Get() { return m_Wrapper.m_Typewriter; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -193,6 +262,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @EnterPressed.started += instance.OnEnterPressed;
             @EnterPressed.performed += instance.OnEnterPressed;
             @EnterPressed.canceled += instance.OnEnterPressed;
+            @RightArrowPressed.started += instance.OnRightArrowPressed;
+            @RightArrowPressed.performed += instance.OnRightArrowPressed;
+            @RightArrowPressed.canceled += instance.OnRightArrowPressed;
+            @LeftArrowPressed.started += instance.OnLeftArrowPressed;
+            @LeftArrowPressed.performed += instance.OnLeftArrowPressed;
+            @LeftArrowPressed.canceled += instance.OnLeftArrowPressed;
+            @EscapePressed.started += instance.OnEscapePressed;
+            @EscapePressed.performed += instance.OnEscapePressed;
+            @EscapePressed.canceled += instance.OnEscapePressed;
         }
 
         private void UnregisterCallbacks(ITypewriterActions instance)
@@ -206,6 +284,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @EnterPressed.started -= instance.OnEnterPressed;
             @EnterPressed.performed -= instance.OnEnterPressed;
             @EnterPressed.canceled -= instance.OnEnterPressed;
+            @RightArrowPressed.started -= instance.OnRightArrowPressed;
+            @RightArrowPressed.performed -= instance.OnRightArrowPressed;
+            @RightArrowPressed.canceled -= instance.OnRightArrowPressed;
+            @LeftArrowPressed.started -= instance.OnLeftArrowPressed;
+            @LeftArrowPressed.performed -= instance.OnLeftArrowPressed;
+            @LeftArrowPressed.canceled -= instance.OnLeftArrowPressed;
+            @EscapePressed.started -= instance.OnEscapePressed;
+            @EscapePressed.performed -= instance.OnEscapePressed;
+            @EscapePressed.canceled -= instance.OnEscapePressed;
         }
 
         public void RemoveCallbacks(ITypewriterActions instance)
@@ -228,5 +315,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnBackspacePressed(InputAction.CallbackContext context);
         void OnBackspaceHold(InputAction.CallbackContext context);
         void OnEnterPressed(InputAction.CallbackContext context);
+        void OnRightArrowPressed(InputAction.CallbackContext context);
+        void OnLeftArrowPressed(InputAction.CallbackContext context);
+        void OnEscapePressed(InputAction.CallbackContext context);
     }
 }

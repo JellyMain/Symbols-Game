@@ -7,6 +7,7 @@ namespace Infrastructure.Services
     public class GameStateMachine
     {
         private readonly ContainerService containerService;
+        private IGameState currentGameState;
 
 
         public GameStateMachine(ContainerService containerService)
@@ -14,10 +15,17 @@ namespace Infrastructure.Services
             this.containerService = containerService;
         }
 
-        
+
         public void Enter<TState>() where TState : class, IGameState
         {
             TState newState = CreateOrGetState<TState>();
+
+            if (currentGameState is IExitableState exitableState)
+            {
+                exitableState.Exit();
+            }
+
+            currentGameState = newState;
             newState.Enter();
         }
 
@@ -36,5 +44,3 @@ namespace Infrastructure.Services
         }
     }
 }
-
-

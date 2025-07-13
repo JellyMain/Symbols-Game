@@ -1,4 +1,5 @@
 using System;
+using Assets;
 using Cysharp.Threading.Tasks;
 using Progress;
 using UI;
@@ -12,12 +13,14 @@ namespace Scenes
     {
         private readonly LoadingScreen loadingScreen;
         private readonly SaveLoadService saveLoadService;
+        private readonly AssetProvider assetProvider;
 
 
-        public SceneLoader(LoadingScreen loadingScreen, SaveLoadService saveLoadService)
+        public SceneLoader(LoadingScreen loadingScreen, SaveLoadService saveLoadService, AssetProvider assetProvider)
         {
             this.loadingScreen = loadingScreen;
             this.saveLoadService = saveLoadService;
+            this.assetProvider = assetProvider;
         }
 
 
@@ -31,17 +34,19 @@ namespace Scenes
         {
             loadingScreen.Show();
             saveLoadService.Cleanup();
+            assetProvider.Cleanup();
 
-            AsyncOperation loadNextScene = SceneManager.LoadSceneAsync(sceneName);
-
-            while (!loadNextScene.isDone)
+            if (SceneManager.GetActiveScene().name != sceneName)
             {
-                await UniTask.Yield();
-            }
-            
-            callback?.Invoke();
+                AsyncOperation loadNextScene = SceneManager.LoadSceneAsync(sceneName);
 
-            loadingScreen.Hide();
+                while (!loadNextScene.isDone)
+                {
+                    await UniTask.Yield();
+                }
+            }
+
+            callback?.Invoke();
         }
     }
 }
